@@ -49,8 +49,13 @@ public class HomeController {
 	public void miserables_request(	HttpServletResponse response) {
 		logger.info("Providing miserables.json file");
 
-		File file = new File("C:\\Users\\dineshkp\\Desktop\\GitRepo_local\\GraphVisualization\\GraphVisualizationHelper\\src\\main\\resources\\miserables.json");
+//		File file = new File("C:\\Users\\dineshkp\\Desktop\\GitRepo_local\\GraphVisualization\\GraphVisualizationHelper\\src\\main\\resources\\miserables.json");
+//		File file = new File ("classpath:/miserables.json");
+		String fileName = "miserables.json";
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource(fileName).getFile());
 		try {
+			
 			InputStream is = new FileInputStream(file);
 			// copy it to response's OutputStream
 			org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
