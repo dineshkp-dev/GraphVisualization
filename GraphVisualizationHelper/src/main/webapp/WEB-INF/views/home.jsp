@@ -36,7 +36,7 @@
 	    .attr("width", width)
 	    .attr("height", height);
 	
-	d3.json("miserables.json", function(error, graph) {
+	d3.json("${pageContext.request.contextPath}/filerequest", function(error, graph) {
 	  if (error) throw error;
 	
 	  force
