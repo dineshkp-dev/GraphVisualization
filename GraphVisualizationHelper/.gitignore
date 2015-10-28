@@ -1,1 +1,8 @@
 /target/
+/Servers/
+.metadata/
+RemoteSystemsTempFiles/
+GraphVisualizationHelper/.settings/
+GraphVisualizationHelper/.classpath
+GraphVisualizationHelper/.project
+GraphVisualizationHelper/.springBeans
