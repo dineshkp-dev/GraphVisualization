@@ -1,6 +1,7 @@
 
 package com.graphvisual.myApp.jsonGen;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "group"
 })
-public class Node {
+public class Node implements Serializable{
 
     @JsonProperty("name")
     private String name;

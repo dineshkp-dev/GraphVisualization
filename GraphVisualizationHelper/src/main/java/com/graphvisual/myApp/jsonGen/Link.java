@@ -1,6 +1,7 @@
 
 package com.graphvisual.myApp.jsonGen;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "target",
     "value"
 })
-public class Link {
+public class Link implements Serializable{
 
     @JsonProperty("source")
     private Integer source;

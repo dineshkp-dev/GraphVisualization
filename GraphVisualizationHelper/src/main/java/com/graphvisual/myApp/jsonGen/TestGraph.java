@@ -1,6 +1,7 @@
 
 package com.graphvisual.myApp.jsonGen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "nodes",
     "links"
 })
-public class TestGraph {
+public class TestGraph implements Serializable{
 
     @JsonProperty("nodes")
     private List<Node> nodes = new ArrayList<Node>();
