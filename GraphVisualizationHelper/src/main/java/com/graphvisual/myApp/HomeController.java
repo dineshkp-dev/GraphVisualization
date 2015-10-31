@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graphvisual.myApp.jsonGen.Link;
 import com.graphvisual.myApp.jsonGen.Node;
-import com.graphvisual.myApp.jsonGen.TestGraph;
+import com.graphvisual.myApp.jsonGen.SimpleGraph;
 
 /**
  * Handles requests for the application home page.
@@ -100,52 +100,179 @@ public class HomeController {
 		}
 	}
 	 */
-	
+
 	@RequestMapping(
 			method=RequestMethod.GET, 
-			value="/filerequest", 
-			produces="application/json" )
-	@ResponseBody
-	public TestGraph getNewGraph() {
+			value="/filerequest" )
+	public void getNewGraph (HttpServletRequest request,	HttpServletResponse response) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		TestGraph graph = getGraph();
-//		String filePath = "classpath:/test_graph_2.json";
-		String filePath = "/home/dineshkp/Desktop/test_graph_2.json";
-		try {
-			mapper.writeValue(new File(filePath), graph);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return graph;
+		SimpleGraph graph = getGraph();
+		mapper.writeValue(response.getOutputStream(), graph);
+		response.flushBuffer();
 	}
 
-	
-	
-	public TestGraph getGraph() {
+
+
+	public SimpleGraph getGraph() {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonGraph = "";
 
 		logger.info("Getting Graph...");
-
+/*
 		Node n1 = new Node("T1", 1);
 		Node n2 = new Node("T2", 2);
 		Node n3 = new Node("T3", 3);
-		Link l1 = new Link(1, 2, 3);
-		Link l2 = new Link(1, 3, 1);
+		Link l1 = new Link(1, 0, 3);
+		Link l2 = new Link(1, 2, 1);
+		
+		Node n1 = new Node("DR1", 1);
+		Node n2 = new Node("DR2", 1);
+		Node n3 = new Node("DR3", 1);
+		*/
+		Node dr01 = new Node("DR01", 1);
+		Node dr02 = new Node("DR02", 1);
+		Node dr03 = new Node("DR03", 1);
+		Node dr04 = new Node("DR04", 1);
+		Node dr05 = new Node("DR05", 1);
+		Node dr06 = new Node("DR06", 1);
+		Node dr07 = new Node("DR07", 1);
+		Node dr08 = new Node("DR08", 1);
+		Node dr09 = new Node("DR09", 1);
+		Node dr10 = new Node("DR10", 1);
+		Node dr11 = new Node("DR11", 1);
+		Node dr12 = new Node("DR12", 1);
+		Node dr13 = new Node("DR13", 1);
+		Node dr14 = new Node("DR14", 1);
+		Node dr15 = new Node("DR15", 1);
+		Node dr16 = new Node("DR16", 1);
+		Node dr17 = new Node("DR17", 1);
+		Node strPF01 = new Node("STRPF01", 2);
+		Node escPF01 = new Node("ESCPF01", 3);
+		Node strL101 = new Node("STRL101", 2);
+		Node escL101 = new Node("ESCL101", 3);
+		Node STNCTR01 = new Node("STNCTR01", 4);
+		Node EXT01 = new Node("EXT01", 5);
+		Node EXT02 = new Node("EXT02", 5);
+		Node EXT03 = new Node("EXT03", 5);
+		
+		Link l1 = new Link(0, 17, 7);
+		Link l2 = new Link(1, 17, 6);
+		Link l3 = new Link(2, 17, 5);
+		Link l4 = new Link(3, 17, 4);
+		Link l5 = new Link(4, 17, 3);
+		Link l6 = new Link(5, 17, 2);
+		Link l7 = new Link(6, 17, 1);
+		Link l8 = new Link(7, 17, 2);
+		Link l9 = new Link(8, 17, 3);
+		Link l10 = new Link(9, 17, 4);
+		Link l11 = new Link(10, 17, 5);
+		Link l12 = new Link(11, 17, 6);
+		Link l13 = new Link(12, 17, 7);
+		Link l14 = new Link(13, 17, 8);
+		Link l15 = new Link(14, 17, 9);
+		Link l16 = new Link(15, 17, 10);
+		Link l17 = new Link(16, 17, 11);
+		Link l18 = new Link(0, 18, 11);
+		Link l19 = new Link(1, 18, 10);
+		Link l20 = new Link(2, 18, 9);
+		Link l21 = new Link(3, 18, 8);
+		Link l22 = new Link(4, 18, 7);
+		Link l23 = new Link(5, 18, 6);
+		Link l24 = new Link(6, 18, 5);
+		Link l25 = new Link(7, 18, 4);
+		Link l26 = new Link(8, 18, 3);
+		Link l27 = new Link(9, 18, 2);
+		Link l28 = new Link(10, 18, 1);
+		Link l29 = new Link(11, 18, 2);
+		Link l30 = new Link(12, 18, 3);
+		Link l31 = new Link(13, 18, 4);
+		Link l32 = new Link(14, 18, 5);
+		Link l33 = new Link(15, 18, 6);
+		Link l34 = new Link(16, 18, 7);
+		Link l35 = new Link(17, 19, 6);
+		Link l36 = new Link(18, 20, 12);
+		Link l37 = new Link(19, 21, 4);
+		Link l38 = new Link(20, 21, 12);
+		Link l39 = new Link(21, 22, 4);
+		Link l40 = new Link(21, 23, 4);
+		Link l41 = new Link(21, 24, 4);
+
+		
 		List<Node> nodeList1 = new ArrayList<Node>();
 		List<Link> linkList1 = new ArrayList<Link>();
 
-		nodeList1.add(n1);
-		nodeList1.add(n2);
-		nodeList1.add(n3);
+
+		nodeList1.add(dr01);
+		nodeList1.add(dr02);
+		nodeList1.add(dr03);
+		nodeList1.add(dr04);
+		nodeList1.add(dr05);
+		nodeList1.add(dr06);
+		nodeList1.add(dr07);
+		nodeList1.add(dr08);
+		nodeList1.add(dr09);
+		nodeList1.add(dr10);
+		nodeList1.add(dr11);
+		nodeList1.add(dr12);
+		nodeList1.add(dr13);
+		nodeList1.add(dr14);
+		nodeList1.add(dr15);
+		nodeList1.add(dr16);
+		nodeList1.add(dr17);
+		nodeList1.add(strPF01);
+		nodeList1.add(escPF01);
+		nodeList1.add(strL101);
+		nodeList1.add(escL101);
+		nodeList1.add(STNCTR01);
+		nodeList1.add(EXT01);
+		nodeList1.add(EXT02);
+		nodeList1.add(EXT03);
+		
 
 		linkList1.add(l1);
 		linkList1.add(l2);
-		TestGraph graph = new TestGraph(nodeList1,linkList1);
+		linkList1.add(l3);
+		linkList1.add(l4);
+		linkList1.add(l5);
+		linkList1.add(l6);
+		linkList1.add(l7);
+		linkList1.add(l8);
+		linkList1.add(l9);
+		linkList1.add(l10);
+		linkList1.add(l11);
+		linkList1.add(l12);
+		linkList1.add(l13);
+		linkList1.add(l14);
+		linkList1.add(l15);
+		linkList1.add(l16);
+		linkList1.add(l17);
+		linkList1.add(l18);
+		linkList1.add(l19);
+		linkList1.add(l20);
+		linkList1.add(l21);
+		linkList1.add(l22);
+		linkList1.add(l23);
+		linkList1.add(l24);
+		linkList1.add(l25);
+		linkList1.add(l26);
+		linkList1.add(l27);
+		linkList1.add(l28);
+		linkList1.add(l29);
+		linkList1.add(l30);
+		linkList1.add(l31);
+		linkList1.add(l32);
+		linkList1.add(l33);
+		linkList1.add(l34);
+		linkList1.add(l35);
+		linkList1.add(l36);
+		linkList1.add(l37);
+		linkList1.add(l38);
+		linkList1.add(l39);
+		linkList1.add(l40);
+		linkList1.add(l41);
+		
+		
+		SimpleGraph graph = new SimpleGraph(nodeList1,linkList1);
 
 		logger.info("Completed Graph generation.");
 		return graph;

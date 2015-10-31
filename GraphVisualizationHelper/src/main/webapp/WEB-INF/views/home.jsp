@@ -20,6 +20,12 @@
 </head>
 <body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<h1>
+		Graph Visualizer
+	</h1>
+	
+	<P>  The time on the server is ${serverTime}. </P>
+	<p>Displaying Graph:</p>
 	<script>
 	
 	var width = 960,
@@ -28,8 +34,8 @@
 	var color = d3.scale.category20();
 	
 	var force = d3.layout.force()
-	    .charge(-120)
-	    .linkDistance(30)
+	    .charge(0)
+	    .linkDistance(function(d) { return (d.value * 20); })
 	    .size([width, height]);
 	
 	var svg = d3.select("body").append("svg")
@@ -46,9 +52,10 @@
 	
 	  var link = svg.selectAll(".link")
 	      .data(graph.links)
-	    .enter().append("line")
+	      .enter().append("line")
 	      .attr("class", "link")
-	      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+	      .style("stroke-width", function(d) { return Math.sqrt(d.value); })
+	      .call(force.drag);
 	
 	  var node = svg.selectAll(".node")
 	      .data(graph.nodes)
@@ -73,11 +80,6 @@
 	});
 	
 	</script>
-	<h1>
-		Graph Visualizer
-	</h1>
-	
-	<P>  The time on the server is ${serverTime}. </P>
-	<p>Displaying Graph:</p>
+
 </body>
 </html>

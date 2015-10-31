@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "nodes",
     "links"
 })
-public class TestGraph implements Serializable{
+public class SimpleGraph implements Serializable{
 
     @JsonProperty("nodes")
     private List<Node> nodes = new ArrayList<Node>();
@@ -40,7 +40,7 @@ public class TestGraph implements Serializable{
      * No args constructor for use in serialization
      * 
      */
-    public TestGraph() {
+    public SimpleGraph() {
     }
 
     /**
@@ -48,7 +48,7 @@ public class TestGraph implements Serializable{
      * @param nodes
      * @param links
      */
-    public TestGraph(List<Node> nodes, List<Link> links) {
+    public SimpleGraph(List<Node> nodes, List<Link> links) {
         this.nodes = nodes;
         this.links = links;
     }
@@ -118,10 +118,10 @@ public class TestGraph implements Serializable{
         if (other == this) {
             return true;
         }
-        if ((other instanceof TestGraph) == false) {
+        if ((other instanceof SimpleGraph) == false) {
             return false;
         }
-        TestGraph rhs = ((TestGraph) other);
+        SimpleGraph rhs = ((SimpleGraph) other);
         return new EqualsBuilder().append(nodes, rhs.nodes).append(links, rhs.links).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
