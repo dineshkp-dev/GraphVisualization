@@ -118,17 +118,7 @@ public class HomeController {
 		String jsonGraph = "";
 
 		logger.info("Getting Graph...");
-/*
-		Node n1 = new Node("T1", 1);
-		Node n2 = new Node("T2", 2);
-		Node n3 = new Node("T3", 3);
-		Link l1 = new Link(1, 0, 3);
-		Link l2 = new Link(1, 2, 1);
-		
-		Node n1 = new Node("DR1", 1);
-		Node n2 = new Node("DR2", 1);
-		Node n3 = new Node("DR3", 1);
-		*/
+
 		Node dr01 = new Node("DR01", 1);
 		Node dr02 = new Node("DR02", 1);
 		Node dr03 = new Node("DR03", 1);
@@ -148,8 +138,8 @@ public class HomeController {
 		Node dr17 = new Node("DR17", 1);
 		Node strPF01 = new Node("STRPF01", 2);
 		Node escPF01 = new Node("ESCPF01", 3);
-		Node strL101 = new Node("STRL101", 2);
-		Node escL101 = new Node("ESCL101", 3);
+		Node strL101 = new Node("STRL101", 6);
+		Node escL101 = new Node("ESCL101", 7);
 		Node STNCTR01 = new Node("STNCTR01", 4);
 		Node EXT01 = new Node("EXT01", 5);
 		Node EXT02 = new Node("EXT02", 5);
