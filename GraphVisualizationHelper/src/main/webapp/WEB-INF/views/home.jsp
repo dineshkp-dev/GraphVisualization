@@ -71,14 +71,16 @@
 		.data(graph.nodes)
 		.enter()
 		.append('g')
-		.classed('gnode', true);
+		.classed('gnode', true)
+		.on("dblclick", dblclick)
+		.call(force.drag);
 	
 	 node = gnodes.append("circle")
 	 	.attr("class", "node")
 	 	.attr("r",12)
-	 	.style("fill", function(d) {return color(d.group); })
-	 	.on("dblclick", dblclick)
-	 	.call(force.drag);
+	 	.style("fill", function(d) {return color(d.group); });
+//	 	.on("dblclick", dblclick);
+//	 	.call(force.drag);
 /* 	  
 	  var gnodes = svg.selectAll('g.gnode')
 	     .data(graph.nodes)
