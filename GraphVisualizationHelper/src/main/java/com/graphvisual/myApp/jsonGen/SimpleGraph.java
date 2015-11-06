@@ -32,15 +32,17 @@ public class SimpleGraph implements Serializable{
     @JsonProperty("nodes")
     private List<Node> nodes = new ArrayList<Node>();
     @JsonProperty("links")
-    private List<Link> links = new ArrayList<Link>();
+    private List<Edge> links = new ArrayList<Edge>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private int numOfNodes = 0;                 // number of vertices in this digraph
+    private List<Edge>[] adj;				    // adj[v] = adjacency list for vertex v
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public SimpleGraph() {
+    private SimpleGraph() {
     }
 
     /**
@@ -48,8 +50,9 @@ public class SimpleGraph implements Serializable{
      * @param nodes
      * @param links
      */
-    public SimpleGraph(List<Node> nodes, List<Link> links) {
+    public SimpleGraph(List<Node> nodes, List<Edge> links) {
         this.nodes = nodes;
+        this.numOfNodes = nodes.size();
         this.links = links;
     }
 
@@ -79,7 +82,7 @@ public class SimpleGraph implements Serializable{
      *     The links
      */
     @JsonProperty("links")
-    public List<Link> getLinks() {
+    public List<Edge> getLinks() {
         return links;
     }
 
@@ -89,7 +92,7 @@ public class SimpleGraph implements Serializable{
      *     The links
      */
     @JsonProperty("links")
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<Edge> links) {
         this.links = links;
     }
 
@@ -124,5 +127,20 @@ public class SimpleGraph implements Serializable{
         SimpleGraph rhs = ((SimpleGraph) other);
         return new EqualsBuilder().append(nodes, rhs.nodes).append(links, rhs.links).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
+
+	public List<Edge> edges() {
+		// TODO Auto-generated method stub
+		return getLinks();
+	}
+
+	public int V() {
+		// TODO Auto-generated method stub
+		return numOfNodes;
+	}
+
+	public Object adj(int v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

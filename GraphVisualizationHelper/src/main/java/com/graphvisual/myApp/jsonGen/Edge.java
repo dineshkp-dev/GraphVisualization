@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "target",
     "value"
 })
-public class Link implements Serializable{
+public class Edge implements Serializable{
 
     @JsonProperty("source")
     private Integer source;
@@ -41,7 +41,7 @@ public class Link implements Serializable{
      * No args constructor for use in serialization
      * 
      */
-    public Link() {
+    public Edge() {
     }
 
     /**
@@ -50,7 +50,7 @@ public class Link implements Serializable{
      * @param value
      * @param target
      */
-    public Link(Integer source, Integer target, Integer value) {
+    public Edge(Integer source, Integer target, Integer value) {
         this.source = source;
         this.target = target;
         this.value = value;
@@ -141,11 +141,26 @@ public class Link implements Serializable{
         if (other == this) {
             return true;
         }
-        if ((other instanceof Link) == false) {
+        if ((other instanceof Edge) == false) {
             return false;
         }
-        Link rhs = ((Link) other);
+        Edge rhs = ((Edge) other);
         return new EqualsBuilder().append(source, rhs.source).append(target, rhs.target).append(value, rhs.value).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
+
+	public int weight() {
+		// TODO Auto-generated method stub
+		return getValue();
+	}
+
+	public int to() {
+		// TODO Auto-generated method stub
+		return getTarget();
+	}
+
+	public int from() {
+		// TODO Auto-generated method stub
+		return getSource();
+	}
 
 }

@@ -32,7 +32,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphvisual.myApp.jsonGen.Link;
+import com.graphvisual.myApp.jsonGen.Edge;
 import com.graphvisual.myApp.jsonGen.Node;
 import com.graphvisual.myApp.jsonGen.SimpleGraph;
 
@@ -118,7 +118,7 @@ public class HomeController {
 		String jsonGraph = "";
 
 		logger.info("Getting Graph...");
-
+// Node name, Node group
 		Node dr01 = new Node("DR01", 1);
 		Node dr02 = new Node("DR02", 1);
 		Node dr03 = new Node("DR03", 1);
@@ -144,52 +144,52 @@ public class HomeController {
 		Node EXT01 = new Node("EXT01", 5);
 		Node EXT02 = new Node("EXT02", 5);
 		Node EXT03 = new Node("EXT03", 5);
-		
-		Link l1 = new Link(0, 17, 7);
-		Link l2 = new Link(1, 17, 6);
-		Link l3 = new Link(2, 17, 5);
-		Link l4 = new Link(3, 17, 4);
-		Link l5 = new Link(4, 17, 3);
-		Link l6 = new Link(5, 17, 2);
-		Link l7 = new Link(6, 17, 1);
-		Link l8 = new Link(7, 17, 2);
-		Link l9 = new Link(8, 17, 3);
-		Link l10 = new Link(9, 17, 4);
-		Link l11 = new Link(10, 17, 5);
-		Link l12 = new Link(11, 17, 6);
-		Link l13 = new Link(12, 17, 7);
-		Link l14 = new Link(13, 17, 8);
-		Link l15 = new Link(14, 17, 9);
-		Link l16 = new Link(15, 17, 10);
-		Link l17 = new Link(16, 17, 11);
-		Link l18 = new Link(0, 18, 11);
-		Link l19 = new Link(1, 18, 10);
-		Link l20 = new Link(2, 18, 9);
-		Link l21 = new Link(3, 18, 8);
-		Link l22 = new Link(4, 18, 7);
-		Link l23 = new Link(5, 18, 6);
-		Link l24 = new Link(6, 18, 5);
-		Link l25 = new Link(7, 18, 4);
-		Link l26 = new Link(8, 18, 3);
-		Link l27 = new Link(9, 18, 2);
-		Link l28 = new Link(10, 18, 1);
-		Link l29 = new Link(11, 18, 2);
-		Link l30 = new Link(12, 18, 3);
-		Link l31 = new Link(13, 18, 4);
-		Link l32 = new Link(14, 18, 5);
-		Link l33 = new Link(15, 18, 6);
-		Link l34 = new Link(16, 18, 7);
-		Link l35 = new Link(17, 19, 6);
-		Link l36 = new Link(18, 20, 12);
-		Link l37 = new Link(19, 21, 4);
-		Link l38 = new Link(20, 21, 12);
-		Link l39 = new Link(21, 22, 4);
-		Link l40 = new Link(21, 23, 4);
-		Link l41 = new Link(21, 24, 4);
+		// Link FromVertex, ToVertex, Weightage
+		Edge l1 = new Edge(0, 17, 7);
+		Edge l2 = new Edge(1, 17, 6);
+		Edge l3 = new Edge(2, 17, 5);
+		Edge l4 = new Edge(3, 17, 4);
+		Edge l5 = new Edge(4, 17, 3);
+		Edge l6 = new Edge(5, 17, 2);
+		Edge l7 = new Edge(6, 17, 1);
+		Edge l8 = new Edge(7, 17, 2);
+		Edge l9 = new Edge(8, 17, 3);
+		Edge l10 = new Edge(9, 17, 4);
+		Edge l11 = new Edge(10, 17, 5);
+		Edge l12 = new Edge(11, 17, 6);
+		Edge l13 = new Edge(12, 17, 7);
+		Edge l14 = new Edge(13, 17, 8);
+		Edge l15 = new Edge(14, 17, 9);
+		Edge l16 = new Edge(15, 17, 10);
+		Edge l17 = new Edge(16, 17, 11);
+		Edge l18 = new Edge(0, 18, 11);
+		Edge l19 = new Edge(1, 18, 10);
+		Edge l20 = new Edge(2, 18, 9);
+		Edge l21 = new Edge(3, 18, 8);
+		Edge l22 = new Edge(4, 18, 7);
+		Edge l23 = new Edge(5, 18, 6);
+		Edge l24 = new Edge(6, 18, 5);
+		Edge l25 = new Edge(7, 18, 4);
+		Edge l26 = new Edge(8, 18, 3);
+		Edge l27 = new Edge(9, 18, 2);
+		Edge l28 = new Edge(10, 18, 1);
+		Edge l29 = new Edge(11, 18, 2);
+		Edge l30 = new Edge(12, 18, 3);
+		Edge l31 = new Edge(13, 18, 4);
+		Edge l32 = new Edge(14, 18, 5);
+		Edge l33 = new Edge(15, 18, 6);
+		Edge l34 = new Edge(16, 18, 7);
+		Edge l35 = new Edge(17, 19, 6);
+		Edge l36 = new Edge(18, 20, 12);
+		Edge l37 = new Edge(19, 21, 4);
+		Edge l38 = new Edge(20, 21, 12);
+		Edge l39 = new Edge(21, 22, 4);
+		Edge l40 = new Edge(21, 23, 4);
+		Edge l41 = new Edge(21, 24, 4);
 
 		
 		List<Node> nodeList1 = new ArrayList<Node>();
-		List<Link> linkList1 = new ArrayList<Link>();
+		List<Edge> linkList1 = new ArrayList<Edge>();
 
 
 		nodeList1.add(dr01);
