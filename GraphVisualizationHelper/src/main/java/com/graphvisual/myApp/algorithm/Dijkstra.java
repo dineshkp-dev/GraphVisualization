@@ -1,24 +1,33 @@
-/**
- * 
- */
+package com.graphvisual.myApp.algorithm;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+
+import com.graphvisual.myApp.jsonGen.Edge;
+import com.graphvisual.myApp.jsonGen.Node;
+
+/*
 package com.graphvisual.myApp.algorithm;
 
 import java.util.Stack;
 
 import com.graphvisual.myApp.jsonGen.Edge;
 import com.graphvisual.myApp.jsonGen.SimpleGraph;
-
+*/
 /**
  * Dijkstra implementation based on algorithms 4 book by Kevin Wayne and Robert
  * Sedgewick
  *
  */
+/*
 public class Dijkstra {
 	private double[] distTo; // distTo[v] = distance of shortest s->v path
 	private Edge[] edgeTo; // edgeTo[v] = last edge on shortest s->v path
 	private IndexMinPQ<Double> pq; // priority queue of vertices
 
-	/**
+	*//**
 	 * Computes a shortest-paths tree from the source vertex <tt>s</tt> to every
 	 * other vertex in the edge-weighted digraph <tt>G</tt>.
 	 *
@@ -30,7 +39,7 @@ public class Dijkstra {
 	 *             if an edge weight is negative
 	 * @throws IllegalArgumentException
 	 *             unless 0 &le; <tt>s</tt> &le; <tt>V</tt> - 1
-	 */
+	 *//*
 	public Dijkstra(SimpleGraph G, int s) {
 		for (Edge e : G.edges()) {
 			if (e.weight() < 0)
@@ -70,7 +79,7 @@ public class Dijkstra {
 		}
 	}
 
-	/**
+	*//**
 	 * Returns the length of a shortest path from the source vertex <tt>s</tt>
 	 * to vertex <tt>v</tt>.
 	 * 
@@ -79,12 +88,12 @@ public class Dijkstra {
 	 * @return the length of a shortest path from the source vertex <tt>s</tt>
 	 *         to vertex <tt>v</tt>; <tt>Double.POSITIVE_INFINITY</tt> if no
 	 *         such path
-	 */
+	 *//*
 	public double distTo(int v) {
 		return distTo[v];
 	}
 
-	/**
+	*//**
 	 * Returns true if there is a path from the source vertex <tt>s</tt> to
 	 * vertex <tt>v</tt>.
 	 *
@@ -92,12 +101,12 @@ public class Dijkstra {
 	 *            the destination vertex
 	 * @return <tt>true</tt> if there is a path from the source vertex
 	 *         <tt>s</tt> to vertex <tt>v</tt>; <tt>false</tt> otherwise
-	 */
+	 *//*
 	public boolean hasPathTo(int v) {
 		return distTo[v] < Double.POSITIVE_INFINITY;
 	}
 
-	/**
+	*//**
 	 * Returns a shortest path from the source vertex <tt>s</tt> to vertex
 	 * <tt>v</tt>.
 	 *
@@ -106,7 +115,7 @@ public class Dijkstra {
 	 * @return a shortest path from the source vertex <tt>s</tt> to vertex
 	 *         <tt>v</tt> as an iterable of edges, and <tt>null</tt> if no such
 	 *         path
-	 */
+	 *//*
 	public Iterable<Edge> pathTo(int v) {
 		if (!hasPathTo(v))
 			return null;
@@ -172,5 +181,43 @@ public class Dijkstra {
 			}
 		}
 		return true;
+	}
+}
+*/
+
+
+public class Dijkstra {
+	public void computePaths(Node fromNode) {
+		fromNode.setMinDistance(0);
+		PriorityQueue<Node> priorityQ = new PriorityQueue<Node>();
+		priorityQ.add(fromNode);
+		
+		// recursively search till the Queue becomes empty
+		while (!priorityQ.isEmpty()) {
+			// return the Node with the Min. value
+			Node actualNode = priorityQ.poll(); 
+			
+			for (Edge edge : actualNode.getAdjacenciesList()) {
+				Node v = edge.getTargetNode();
+				double value = edge.getValue();
+				double minDistanceViaV = actualNode.getMinDistance() + value;
+				
+				if (minDistanceViaV < v.getMinDistance()) {
+					priorityQ.remove(v);
+					v.setPrevNode(actualNode);
+					v.setMinDistance(minDistanceViaV);
+					priorityQ.add(v);
+				}
+			}
+		}
+	}
+	
+	public List<Node> getShortestPathTo(Node targetNode) {
+		List<Node> path = new ArrayList<Node>();
+		for(Node node = targetNode; node != null; node= node.getPrevNode()) {
+			path.add(node);
+		}
+		Collections.reverse(path);
+		return path;
 	}
 }

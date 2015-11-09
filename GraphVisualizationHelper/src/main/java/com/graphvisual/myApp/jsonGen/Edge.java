@@ -33,10 +33,13 @@ public class Edge implements Serializable{
     @JsonProperty("target")
     private Integer target;
     @JsonProperty("value")
-    private Integer value;
+    private Double value;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
+    @JsonIgnore
+	private Node startNode;
+    @JsonIgnore
+	private Node targetNode;
     /**
      * No args constructor for use in serialization
      * 
@@ -50,7 +53,7 @@ public class Edge implements Serializable{
      * @param value
      * @param target
      */
-    public Edge(Integer source, Integer target, Integer value) {
+    public Edge(Integer source, Integer target, Double value) {
         this.source = source;
         this.target = target;
         this.value = value;
@@ -102,7 +105,7 @@ public class Edge implements Serializable{
      *     The value
      */
     @JsonProperty("value")
-    public Integer getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -112,7 +115,7 @@ public class Edge implements Serializable{
      *     The value
      */
     @JsonProperty("value")
-    public void setValue(Integer value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
@@ -148,7 +151,7 @@ public class Edge implements Serializable{
         return new EqualsBuilder().append(source, rhs.source).append(target, rhs.target).append(value, rhs.value).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
-	public int weight() {
+	public Double weight() {
 		// TODO Auto-generated method stub
 		return getValue();
 	}
@@ -161,6 +164,29 @@ public class Edge implements Serializable{
 	public int from() {
 		// TODO Auto-generated method stub
 		return getSource();
+	}
+	
+	public Edge(Node startNode, Node targetNode, Double value) {
+		super();
+		this.value = value;
+		this.startNode = startNode;
+		this.targetNode = targetNode;
+	}
+
+	public Node getStartNode() {
+		return startNode;
+	}
+
+	public void setStartNode(Node startNode) {
+		this.startNode = startNode;
+	}
+
+	public Node getTargetNode() {
+		return targetNode;
+	}
+
+	public void setTargetNode(Node targetNode) {
+		this.targetNode = targetNode;
 	}
 
 }

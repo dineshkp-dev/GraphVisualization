@@ -2,7 +2,9 @@
 package com.graphvisual.myApp.jsonGen;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Generated;
@@ -24,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "group"
 })
-public class Node implements Serializable{
+public class Node implements Serializable, Comparable<Node> {
 
     @JsonProperty("name")
     private String name;
@@ -32,15 +34,45 @@ public class Node implements Serializable{
     private Integer group;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @JsonIgnore
+    private double minDistance = Double.MAX_VALUE;
+    @JsonIgnore
+    private List<Edge> adjacenciesList;
+    @JsonIgnore
+    private boolean visited;
+    @JsonIgnore
+    private Node prevNode;
+    public void setAdjacenciesList(List<Edge> adjacenciesList) {
+		this.adjacenciesList = adjacenciesList;
+	}
 
-    /**
+	/**
      * No args constructor for use in serialization
      * 
      */
     public Node() {
     }
+    
+	public boolean isVisited() {
+		return visited;
+	}
 
-    /**
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
+	public void addNeighbour(Edge edge) {
+		this.adjacenciesList.add(edge);
+	}
+	
+	public void setPrevNode(Node prevNode) {
+		this.prevNode = prevNode;
+	}
+
+    public Node getPrevNode() {
+		return prevNode;
+	}
+
+	/**
      * 
      * @param name
      * @param group
@@ -48,9 +80,18 @@ public class Node implements Serializable{
     public Node(String name, Integer group) {
         this.name = name;
         this.group = group;
+        this.adjacenciesList = new ArrayList<Edge>();
     }
 
-    /**
+    public double getMinDistance() {
+		return minDistance;
+	}
+
+	public void setMinDistance(double minDistance) {
+		this.minDistance = minDistance;
+	}
+
+	/**
      * 
      * @return
      *     The name
@@ -121,5 +162,18 @@ public class Node implements Serializable{
         Node rhs = ((Node) other);
         return new EqualsBuilder().append(name, rhs.name).append(group, rhs.group).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
+
+	public void setMinDistance(int minDistance) {
+		this.minDistance = minDistance;
+	}
+
+	@Override
+	public int compareTo(Node otherNode) {
+		return Double.compare(this.minDistance, otherNode.minDistance);
+	}
+
+	public List<Edge> getAdjacenciesList() {
+		return adjacenciesList;
+	}
 
 }

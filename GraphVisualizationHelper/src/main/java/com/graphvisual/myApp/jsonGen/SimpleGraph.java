@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.graphvisual.myApp.algorithm.Bag;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -36,7 +37,8 @@ public class SimpleGraph implements Serializable{
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     private int numOfNodes = 0;                 // number of vertices in this digraph
-    private List<Edge>[] adj;				    // adj[v] = adjacency list for vertex v
+//    private List<Edge>[] adj;				    // adj[v] = adjacency list for vertex v
+    private Bag<Edge>[] adj;
 
     /**
      * No args constructor for use in serialization
